@@ -97,24 +97,24 @@ TEST(TBB_Gaussian_blur, FilterParallel_Result_Equals_To_Filter_Result) {
     ASSERT_EQ(expected, calculated);
 }
 
-// TEST(TBB_Gaussian_blur, FilterParallel_Accelerates) {
-//    double sequential, parallel;
-//    int width = 1000, height = 1000;
-//    auto mat = getRandomMatrix(width, height);
+ TEST(TBB_Gaussian_blur, FilterParallel_Accelerates) {
+    double sequential, parallel;
+    int width = 1000, height = 1000;
+    auto mat = getRandomMatrix(width, height);
 
-//    double start, end;
-//    start = omp_get_wtime();
-//    filter(mat, width, 9);
-//    end = omp_get_wtime();
-//    sequential = end - start;
+    double start, end;
+    start = omp_get_wtime();
+    filter(mat, width, 9);
+    end = omp_get_wtime();
+    sequential = end - start;
 
-//    start = omp_get_wtime();
-//    filterParallel(mat, width, 9);
-//    end = omp_get_wtime();
-//    parallel = end - start;
+    start = omp_get_wtime();
+    filterParallel(mat, width, 9);
+    end = omp_get_wtime();
+    parallel = end - start;
 
-//    ASSERT_GT(sequential, parallel);
-//    std::cout << "Sequential: " << sequential << std::endl;
-//    std::cout << "Parallel: " << parallel << std::endl;
-//    std::cout << "Scale: " << sequential / parallel << std::endl;
-// }
+    ASSERT_GT(sequential, parallel);
+    std::cout << "Sequential: " << sequential << std::endl;
+    std::cout << "Parallel: " << parallel << std::endl;
+    std::cout << "Scale: " << sequential / parallel << std::endl;
+ }

@@ -18,7 +18,7 @@ std::vector<uint8_t> filter(const std::vector<uint8_t>& matrix, int width, int c
     int radius = coreSize / 2;
     auto core = calculateCore(coreSize);
     int height = length / width;
-    std::vector<uint8_t> filtered(width * height);
+    std::vector<uint8_t> filtered(matrix);
     for (int i = radius; i < height - radius; i++) {
         for (int j = radius; j < width - radius; j++) {
             uint8_t result = 0;
@@ -44,7 +44,7 @@ std::vector<uint8_t> filterParallel(const std::vector<uint8_t>& matrix, int widt
     int radius = coreSize / 2;
     std::vector<double> core = calculateCore(coreSize);
     int height = length / width;
-    std::vector<uint8_t> filtered(width * height);
+    std::vector<uint8_t> filtered(matrix);
 
     tbb::parallel_for(radius, height - radius, [&](int i){
         tbb::parallel_for(radius, width - radius, [&](int j){
